@@ -1,0 +1,16 @@
+# install Docker first
+# go to docker directory
+cd C:\Users\ballemand\Documents\GitHub\simple-maven-project-with-tests\docker
+# build image from Dockerfile
+docker image build -t benallemand/jenkins .
+# connect to docker hub
+docker login
+# push image to docker hub
+docker image push benallemand/jenkins
+# init swarm to manage docker container as a service
+docker swarm init
+# initialize first user with creds admin/admin
+echo "admin" | docker secret create jenkins-user -
+echo "admin" | docker secret create jenkins-pass -
+# launch service
+docker stack deploy -c jenkins.yml jenkins
