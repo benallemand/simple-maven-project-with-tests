@@ -1,7 +1,8 @@
 node {
    def mvnHome
    stage('Preparation') { // for display purposes
-      mvnHome = tool 'M3'
+	  git 'https://github.com/benallemand/simple-maven-project-with-tests.git'
+	  mvnHome = tool 'M3'
    }
    stage('Build') {
       // Run the maven build
